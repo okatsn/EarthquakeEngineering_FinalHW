@@ -155,10 +155,10 @@ end
 md"### Input parameter"
 
 # ╔═╡ 60cc0a5a-1efa-46a3-aa87-e63a9b4f11bd
-Eq_design = Earthquake("D",0.7,0.4,1.03,1.1,1.0,1.0)
+Eq_design = Earthquake("D",0.8,0.45,1.16,1.32,1.0,1.0)
 
 # ╔═╡ afc2727e-8a44-40ad-a6a3-d2da3c98f8cb
-Eq_max = Earthquake("M",0.9,0.5,1.03,1.15,1.0,1.0)
+Eq_max = Earthquake("M",1.0,0.55,1.20,1.45,1.0,1.0)
 
 # ╔═╡ b81dcc3f-d566-492e-a0e0-1c339424156e
 with_terminal() do
@@ -194,14 +194,30 @@ md"### 參數"
 # ╔═╡ 5169a46f-a454-4d37-86a3-2c91fbb3988a
 md"""
 #### 工址
-![](https://github.com/okatsn/FinalHW_EarthquakeEngineering/raw/master/img/site_loc.png)
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/site_loc.png)
 
 #### 震區水平譜加速度係數
   
-![](https://github.com/okatsn/FinalHW_EarthquakeEngineering/raw/master/img/Fig_table_2-1.png)
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/table_2-1.png)
 
 #### 近斷層調整因子 (以車籠埔斷層為例)
-![](https://github.com/okatsn/FinalHW_EarthquakeEngineering/raw/master/img/Fig_table_2-4-1.png)
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/table_2-4-1.png)
+
+#### 工址放大係數
+本節將根據 $V_{S30}$ 以及 震區水平譜加速度係數($S_S$) 決定地盤分類以及長/短周期結構之工址放大係數。
+
+計算公式：
+
+$V_{S30} = \frac{\sum_{i=1}^n d_i}{\sum_{i=1}^n d_i/V_{Si}}$
+
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/site_Vs30_2.png)
+
+來源：
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/site_Vs30.png)
+
+
+由於工址附近的烏日國小的$V_{S30} = 476.15 \geq 270ms$， 屬第一類地盤。 經查表，得到工址放大係數:
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/table_2-2.png)
 """
 
 # ╔═╡ d82c1e80-60f0-4fb7-a709-aab2d948c8b9
@@ -228,11 +244,23 @@ begin
 	show_parameter(Eq_max)
 end
 
+# ╔═╡ ecd132e5-02b8-4d2f-97d2-477b8680f5ac
+md"### 反應譜圖"
+
 # ╔═╡ e4aa31b8-7a39-4a61-9ece-38c77755a6e7
 let 
 	p = plot(Eq_design,labels = "design");
 	plot!(p, Eq_max, labels = "max", size=(600,300), xlabel = "T", ylabel = "Sa");
 end
+
+# ╔═╡ 8172a59d-e12d-4993-ab35-663294bd9ff3
+md"""### 結果對照
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/spectra_matlab.png)
+
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/near-by_faults.png)
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/final_result.png)
+
+"""
 
 # ╔═╡ Cell order:
 # ╠═d4b63e91-431d-4097-8a11-0e3eb404b91b
@@ -257,11 +285,13 @@ end
 # ╟─d084e446-a1f7-41ea-a858-08ab24a85c7c
 # ╟─a6a03966-be99-445a-ace3-6e3373ea9d00
 # ╟─2970a59e-2231-427b-aa6c-354aeb0083b1
-# ╠═5169a46f-a454-4d37-86a3-2c91fbb3988a
+# ╟─5169a46f-a454-4d37-86a3-2c91fbb3988a
 # ╟─d82c1e80-60f0-4fb7-a709-aab2d948c8b9
 # ╟─910cd27a-d11e-41bc-a202-372f1d8ebc0f
 # ╟─852f3717-84ec-44f9-850d-b244f3b5a089
 # ╟─c128d099-333a-461d-ab26-aa43a4bde5a0
 # ╟─7fe0908d-9d38-4198-85cd-7849868bface
 # ╟─8c51288d-8d6e-49ba-918b-af9d9088a8c8
+# ╟─ecd132e5-02b8-4d2f-97d2-477b8680f5ac
 # ╠═e4aa31b8-7a39-4a61-9ece-38c77755a6e7
+# ╠═8172a59d-e12d-4993-ab35-663294bd9ff3
