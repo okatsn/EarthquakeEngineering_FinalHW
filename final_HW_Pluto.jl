@@ -39,7 +39,9 @@ $R = T/\log(1-P(Z>z))$
 """
 
 # ╔═╡ 2970a59e-2231-427b-aa6c-354aeb0083b1
-md"### 參數"
+md"### 參數
+參考：[內政部營建署-建築物耐震設計規範及解說](https://www.cpami.gov.tw/%E6%9C%80%E6%96%B0%E6%B6%88%E6%81%AF/%E6%B3%95%E8%A6%8F%E5%85%AC%E5%91%8A/10471-%E5%BB%BA%E7%AF%89%E7%89%A9%E8%80%90%E9%9C%87%E8%A8%AD%E8%A8%88%E8%A6%8F%E7%AF%84%E5%8F%8A%E8%A7%A3%E8%AA%AA.html)
+"
 
 # ╔═╡ 5169a46f-a454-4d37-86a3-2c91fbb3988a
 md"""
@@ -62,11 +64,11 @@ $V_{S30} = \frac{\sum_{i=1}^n d_i}{\sum_{i=1}^n d_i/V_{Si}}$
 
 ![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/site_Vs30_2.png)
 
-來源：
+來源: [Engineering Geological Database for TSMIP](http://egdt.ncree.org.tw/TCUMAP.htm)：
 ![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/site_Vs30.png)
 
 
-由於工址附近的烏日國小的$V_{S30} = 440.30 \geq 270m/s$， 屬第一類地盤。 經查表，得到工址放大係數:
+由於工址附近的健民國小的$V_{S30} = 440.30 \geq 270m/s$， 屬第一類地盤。 經查表，得到工址放大係數:
 ![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/table_2-2.png)
 """
 
@@ -264,7 +266,6 @@ dump(Eq_max)
 end
 
 # ╔═╡ Cell order:
-# ╠═d4b63e91-431d-4097-8a11-0e3eb404b91b
 # ╟─6b37da3c-8e16-45dc-b86b-37ea6acda46e
 # ╟─b1911a8e-4d6e-4bd7-9aba-7219dc32bf77
 # ╟─d084e446-a1f7-41ea-a858-08ab24a85c7c
@@ -280,6 +281,7 @@ end
 # ╟─e4aa31b8-7a39-4a61-9ece-38c77755a6e7
 # ╟─8172a59d-e12d-4993-ab35-663294bd9ff3
 # ╟─24d1b70b-9c26-4017-8369-40fe9a0b0085
+# ╠═d4b63e91-431d-4097-8a11-0e3eb404b91b
 # ╠═77f95570-c78c-11eb-2d0c-d12e6e2ad622
 # ╟─e642d15f-7539-46a8-a302-3b04ccbfc6ef
 # ╠═bb853a92-2571-4943-9f92-aa73f778ea1c
