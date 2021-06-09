@@ -66,12 +66,9 @@ $V_{S30} = \frac{\sum_{i=1}^n d_i}{\sum_{i=1}^n d_i/V_{Si}}$
 ![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/site_Vs30.png)
 
 
-由於工址附近的烏日國小的$V_{S30} = 476.15 \geq 270ms$， 屬第一類地盤。 經查表，得到工址放大係數:
+由於工址附近的烏日國小的$V_{S30} = 440.30 \geq 270m/s$， 屬第一類地盤。 經查表，得到工址放大係數:
 ![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/table_2-2.png)
 """
-
-# ╔═╡ d82c1e80-60f0-4fb7-a709-aab2d948c8b9
-md"#### 工址放大係數 (第一類地盤)"
 
 # ╔═╡ 910cd27a-d11e-41bc-a202-372f1d8ebc0f
 md"### 計算結果"
@@ -100,9 +97,6 @@ md"
 
 # 程式碼
 "
-
-# ╔═╡ 5798e810-5238-4805-8f74-7448be1792b4
-md"### resources"
 
 # ╔═╡ e642d15f-7539-46a8-a302-3b04ccbfc6ef
 md"### structure"
@@ -277,7 +271,6 @@ end
 # ╟─a6a03966-be99-445a-ace3-6e3373ea9d00
 # ╟─2970a59e-2231-427b-aa6c-354aeb0083b1
 # ╟─5169a46f-a454-4d37-86a3-2c91fbb3988a
-# ╟─d82c1e80-60f0-4fb7-a709-aab2d948c8b9
 # ╟─910cd27a-d11e-41bc-a202-372f1d8ebc0f
 # ╟─852f3717-84ec-44f9-850d-b244f3b5a089
 # ╟─c128d099-333a-461d-ab26-aa43a4bde5a0
@@ -286,9 +279,8 @@ end
 # ╟─ecd132e5-02b8-4d2f-97d2-477b8680f5ac
 # ╟─e4aa31b8-7a39-4a61-9ece-38c77755a6e7
 # ╟─8172a59d-e12d-4993-ab35-663294bd9ff3
-# ╠═24d1b70b-9c26-4017-8369-40fe9a0b0085
+# ╟─24d1b70b-9c26-4017-8369-40fe9a0b0085
 # ╠═77f95570-c78c-11eb-2d0c-d12e6e2ad622
-# ╠═5798e810-5238-4805-8f74-7448be1792b4
 # ╟─e642d15f-7539-46a8-a302-3b04ccbfc6ef
 # ╠═bb853a92-2571-4943-9f92-aa73f778ea1c
 # ╟─47dc183e-78c0-49ce-a0a1-e0a417923bca
