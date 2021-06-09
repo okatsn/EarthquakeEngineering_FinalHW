@@ -26,6 +26,81 @@ end
 # ╔═╡ d4b63e91-431d-4097-8a11-0e3eb404b91b
 PlutoUI.TableOfContents(depth = 10)
 
+# ╔═╡ 6b37da3c-8e16-45dc-b86b-37ea6acda46e
+md"# 地震工程實務分析期末作業
+107682001 吳宗羲"
+
+# ╔═╡ b1911a8e-4d6e-4bd7-9aba-7219dc32bf77
+md"""
+### 基本資訊
+#### 回歸期公式
+
+$R = T/\log(1-P(Z>z))$
+"""
+
+# ╔═╡ 2970a59e-2231-427b-aa6c-354aeb0083b1
+md"### 參數"
+
+# ╔═╡ 5169a46f-a454-4d37-86a3-2c91fbb3988a
+md"""
+#### 工址
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/site_loc.png)
+
+#### 震區水平譜加速度係數
+  
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/table_2-1.png)
+
+#### 近斷層調整因子 (以車籠埔斷層為例)
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/table_2-4-1.png)
+
+#### 工址放大係數
+本節將根據 $V_{S30}$ 以及 震區水平譜加速度係數($S_S$) 決定地盤分類以及長/短周期結構之工址放大係數。
+
+計算公式：
+
+$V_{S30} = \frac{\sum_{i=1}^n d_i}{\sum_{i=1}^n d_i/V_{Si}}$
+
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/site_Vs30_2.png)
+
+來源：
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/site_Vs30.png)
+
+
+由於工址附近的烏日國小的$V_{S30} = 476.15 \geq 270ms$， 屬第一類地盤。 經查表，得到工址放大係數:
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/table_2-2.png)
+"""
+
+# ╔═╡ d82c1e80-60f0-4fb7-a709-aab2d948c8b9
+md"#### 工址放大係數 (第一類地盤)"
+
+# ╔═╡ 910cd27a-d11e-41bc-a202-372f1d8ebc0f
+md"### 計算結果"
+
+# ╔═╡ 852f3717-84ec-44f9-850d-b244f3b5a089
+md"#### 設計地震"
+
+# ╔═╡ 7fe0908d-9d38-4198-85cd-7849868bface
+md"#### 最大參考地震"
+
+# ╔═╡ ecd132e5-02b8-4d2f-97d2-477b8680f5ac
+md"### 反應譜圖"
+
+# ╔═╡ 8172a59d-e12d-4993-ab35-663294bd9ff3
+md"""### 結果對照
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/spectra_matlab.png)
+
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/near-by_faults.png)
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/final_result.png)
+
+"""
+
+# ╔═╡ 24d1b70b-9c26-4017-8369-40fe9a0b0085
+md"
+---
+
+# 程式碼
+"
+
 # ╔═╡ 5798e810-5238-4805-8f74-7448be1792b4
 md"### resources"
 
@@ -157,8 +232,32 @@ md"### Input parameter"
 # ╔═╡ 60cc0a5a-1efa-46a3-aa87-e63a9b4f11bd
 Eq_design = Earthquake("D",0.8,0.45,1.16,1.32,1.0,1.0)
 
+# ╔═╡ d084e446-a1f7-41ea-a858-08ab24a85c7c
+show_returnperiod(Eq_design)
+
+# ╔═╡ c128d099-333a-461d-ab26-aa43a4bde5a0
+begin
+	refResh
+	show_parameter(Eq_design)
+end
+
 # ╔═╡ afc2727e-8a44-40ad-a6a3-d2da3c98f8cb
 Eq_max = Earthquake("M",1.0,0.55,1.20,1.45,1.0,1.0)
+
+# ╔═╡ a6a03966-be99-445a-ace3-6e3373ea9d00
+show_returnperiod(Eq_max)
+
+# ╔═╡ 8c51288d-8d6e-49ba-918b-af9d9088a8c8
+begin
+	refResh
+	show_parameter(Eq_max)
+end
+
+# ╔═╡ e4aa31b8-7a39-4a61-9ece-38c77755a6e7
+let 
+	p = plot(Eq_design,labels = "design");
+	plot!(p, Eq_max, labels = "max", size=(600,300), xlabel = "T", ylabel = "Sa");
+end
 
 # ╔═╡ b81dcc3f-d566-492e-a0e0-1c339424156e
 with_terminal() do
@@ -170,100 +269,24 @@ with_terminal() do
 dump(Eq_max)
 end
 
-# ╔═╡ 6b37da3c-8e16-45dc-b86b-37ea6acda46e
-md"# 地震工程實務分析期末作業
-107682001 吳宗羲"
-
-# ╔═╡ b1911a8e-4d6e-4bd7-9aba-7219dc32bf77
-md"""
-### 基本資訊
-#### 回歸期公式
-
-$R = T/\log(1-P(Z>z))$
-"""
-
-# ╔═╡ d084e446-a1f7-41ea-a858-08ab24a85c7c
-show_returnperiod(Eq_design)
-
-# ╔═╡ a6a03966-be99-445a-ace3-6e3373ea9d00
-show_returnperiod(Eq_max)
-
-# ╔═╡ 2970a59e-2231-427b-aa6c-354aeb0083b1
-md"### 參數"
-
-# ╔═╡ 5169a46f-a454-4d37-86a3-2c91fbb3988a
-md"""
-#### 工址
-![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/site_loc.png)
-
-#### 震區水平譜加速度係數
-  
-![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/table_2-1.png)
-
-#### 近斷層調整因子 (以車籠埔斷層為例)
-![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/table_2-4-1.png)
-
-#### 工址放大係數
-本節將根據 $V_{S30}$ 以及 震區水平譜加速度係數($S_S$) 決定地盤分類以及長/短周期結構之工址放大係數。
-
-計算公式：
-
-$V_{S30} = \frac{\sum_{i=1}^n d_i}{\sum_{i=1}^n d_i/V_{Si}}$
-
-![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/site_Vs30_2.png)
-
-來源：
-![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/site_Vs30.png)
-
-
-由於工址附近的烏日國小的$V_{S30} = 476.15 \geq 270ms$， 屬第一類地盤。 經查表，得到工址放大係數:
-![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/table_2-2.png)
-"""
-
-# ╔═╡ d82c1e80-60f0-4fb7-a709-aab2d948c8b9
-md"#### 工址放大係數 (第一類地盤)"
-
-# ╔═╡ 910cd27a-d11e-41bc-a202-372f1d8ebc0f
-md"### 計算結果"
-
-# ╔═╡ 852f3717-84ec-44f9-850d-b244f3b5a089
-md"#### 設計地震"
-
-# ╔═╡ c128d099-333a-461d-ab26-aa43a4bde5a0
-begin
-	refResh
-	show_parameter(Eq_design)
-end
-
-# ╔═╡ 7fe0908d-9d38-4198-85cd-7849868bface
-md"#### 最大參考地震"
-
-# ╔═╡ 8c51288d-8d6e-49ba-918b-af9d9088a8c8
-begin
-	refResh
-	show_parameter(Eq_max)
-end
-
-# ╔═╡ ecd132e5-02b8-4d2f-97d2-477b8680f5ac
-md"### 反應譜圖"
-
-# ╔═╡ e4aa31b8-7a39-4a61-9ece-38c77755a6e7
-let 
-	p = plot(Eq_design,labels = "design");
-	plot!(p, Eq_max, labels = "max", size=(600,300), xlabel = "T", ylabel = "Sa");
-end
-
-# ╔═╡ 8172a59d-e12d-4993-ab35-663294bd9ff3
-md"""### 結果對照
-![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/spectra_matlab.png)
-
-![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/near-by_faults.png)
-![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/final_result.png)
-
-"""
-
 # ╔═╡ Cell order:
 # ╠═d4b63e91-431d-4097-8a11-0e3eb404b91b
+# ╟─6b37da3c-8e16-45dc-b86b-37ea6acda46e
+# ╟─b1911a8e-4d6e-4bd7-9aba-7219dc32bf77
+# ╟─d084e446-a1f7-41ea-a858-08ab24a85c7c
+# ╟─a6a03966-be99-445a-ace3-6e3373ea9d00
+# ╟─2970a59e-2231-427b-aa6c-354aeb0083b1
+# ╟─5169a46f-a454-4d37-86a3-2c91fbb3988a
+# ╟─d82c1e80-60f0-4fb7-a709-aab2d948c8b9
+# ╟─910cd27a-d11e-41bc-a202-372f1d8ebc0f
+# ╟─852f3717-84ec-44f9-850d-b244f3b5a089
+# ╟─c128d099-333a-461d-ab26-aa43a4bde5a0
+# ╟─7fe0908d-9d38-4198-85cd-7849868bface
+# ╟─8c51288d-8d6e-49ba-918b-af9d9088a8c8
+# ╟─ecd132e5-02b8-4d2f-97d2-477b8680f5ac
+# ╟─e4aa31b8-7a39-4a61-9ece-38c77755a6e7
+# ╟─8172a59d-e12d-4993-ab35-663294bd9ff3
+# ╠═24d1b70b-9c26-4017-8369-40fe9a0b0085
 # ╠═77f95570-c78c-11eb-2d0c-d12e6e2ad622
 # ╠═5798e810-5238-4805-8f74-7448be1792b4
 # ╟─e642d15f-7539-46a8-a302-3b04ccbfc6ef
@@ -280,18 +303,3 @@ md"""### 結果對照
 # ╠═afc2727e-8a44-40ad-a6a3-d2da3c98f8cb
 # ╠═b81dcc3f-d566-492e-a0e0-1c339424156e
 # ╠═76b0ce07-68f2-429f-9515-3188a8850ce2
-# ╟─6b37da3c-8e16-45dc-b86b-37ea6acda46e
-# ╟─b1911a8e-4d6e-4bd7-9aba-7219dc32bf77
-# ╟─d084e446-a1f7-41ea-a858-08ab24a85c7c
-# ╟─a6a03966-be99-445a-ace3-6e3373ea9d00
-# ╟─2970a59e-2231-427b-aa6c-354aeb0083b1
-# ╟─5169a46f-a454-4d37-86a3-2c91fbb3988a
-# ╟─d82c1e80-60f0-4fb7-a709-aab2d948c8b9
-# ╟─910cd27a-d11e-41bc-a202-372f1d8ebc0f
-# ╟─852f3717-84ec-44f9-850d-b244f3b5a089
-# ╟─c128d099-333a-461d-ab26-aa43a4bde5a0
-# ╟─7fe0908d-9d38-4198-85cd-7849868bface
-# ╟─8c51288d-8d6e-49ba-918b-af9d9088a8c8
-# ╟─ecd132e5-02b8-4d2f-97d2-477b8680f5ac
-# ╠═e4aa31b8-7a39-4a61-9ece-38c77755a6e7
-# ╠═8172a59d-e12d-4993-ab35-663294bd9ff3
