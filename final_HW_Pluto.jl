@@ -23,9 +23,6 @@ begin
 	using PlutoUI, LaTeXStrings, Plots
 end
 
-# ╔═╡ d4b63e91-431d-4097-8a11-0e3eb404b91b
-PlutoUI.TableOfContents(depth = 10)
-
 # ╔═╡ 6b37da3c-8e16-45dc-b86b-37ea6acda46e
 md"# 地震工程實務分析期末作業
 107682001 吳宗羲"
@@ -100,6 +97,9 @@ md"
 # 程式碼
 "
 
+# ╔═╡ d4b63e91-431d-4097-8a11-0e3eb404b91b
+PlutoUI.TableOfContents(depth = 10)
+
 # ╔═╡ e642d15f-7539-46a8-a302-3b04ccbfc6ef
 md"### structure"
 
@@ -163,14 +163,14 @@ struct Earthquake
 end
 
 # ╔═╡ ebb47979-43a5-4396-9b4b-d5d67fb76a2b
-function plot(Eq::Earthquake; c...)
-	p = Plots.plot(Eq.T, Eq.Sa; c...);
+function Plots.plot(Eq::Earthquake; c...)
+	p = plot(Eq.T, Eq.Sa; c...);
 	return p
 end
 
 # ╔═╡ 52915591-d7c8-4cec-9b4f-3c0c54efeb5f
-function plot!(p, Eq::Earthquake; c...)
-	Plots.plot!(p, Eq.T, Eq.Sa; c...);
+function Plots.plot!(p::Plots.Plot, Eq::Earthquake; c...)
+	plot!(p, Eq.T, Eq.Sa; c...);
 end
 
 # ╔═╡ f438c670-5672-4a1e-87e0-7ca73abcd389
@@ -251,8 +251,8 @@ end
 
 # ╔═╡ e4aa31b8-7a39-4a61-9ece-38c77755a6e7
 let 
-	p = plot(Eq_design,labels = "design");
-	plot!(p, Eq_max, labels = "max", size=(600,300), xlabel = "T", ylabel = "Sa");
+	p = plot(Eq_max,labels = "max");
+	plot!(p, Eq_design; labels = "design", size=(600,300), xlabel = "T", ylabel = "Sa")
 end
 
 # ╔═╡ b81dcc3f-d566-492e-a0e0-1c339424156e
