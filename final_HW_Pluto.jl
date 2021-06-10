@@ -23,6 +23,9 @@ begin
 	using PlutoUI, LaTeXStrings, Plots
 end
 
+# ╔═╡ d4b63e91-431d-4097-8a11-0e3eb404b91b
+PlutoUI.TableOfContents(depth = 10)
+
 # ╔═╡ 6b37da3c-8e16-45dc-b86b-37ea6acda46e
 md"# 地震工程實務分析期末作業
 107682001 吳宗羲"
@@ -81,6 +84,12 @@ md"#### 最大參考地震"
 # ╔═╡ ecd132e5-02b8-4d2f-97d2-477b8680f5ac
 md"### 反應譜圖"
 
+# ╔═╡ 8afac7c3-0901-4ed9-9308-8338f13af400
+md"根據表2-5繪製反映譜圖
+
+![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/table_2-5.png)
+"
+
 # ╔═╡ 8172a59d-e12d-4993-ab35-663294bd9ff3
 md"""### 結果對照
 ![](https://github.com/okatsn/EarthquakeEngineering_FinalHW/raw/master/img/spectra_matlab.png)
@@ -96,9 +105,6 @@ md"
 
 # 程式碼
 "
-
-# ╔═╡ d4b63e91-431d-4097-8a11-0e3eb404b91b
-PlutoUI.TableOfContents(depth = 10)
 
 # ╔═╡ e642d15f-7539-46a8-a302-3b04ccbfc6ef
 md"### structure"
@@ -266,6 +272,7 @@ dump(Eq_max)
 end
 
 # ╔═╡ Cell order:
+# ╟─d4b63e91-431d-4097-8a11-0e3eb404b91b
 # ╟─6b37da3c-8e16-45dc-b86b-37ea6acda46e
 # ╟─b1911a8e-4d6e-4bd7-9aba-7219dc32bf77
 # ╟─d084e446-a1f7-41ea-a858-08ab24a85c7c
@@ -278,10 +285,10 @@ end
 # ╟─7fe0908d-9d38-4198-85cd-7849868bface
 # ╟─8c51288d-8d6e-49ba-918b-af9d9088a8c8
 # ╟─ecd132e5-02b8-4d2f-97d2-477b8680f5ac
+# ╟─8afac7c3-0901-4ed9-9308-8338f13af400
 # ╟─e4aa31b8-7a39-4a61-9ece-38c77755a6e7
 # ╟─8172a59d-e12d-4993-ab35-663294bd9ff3
 # ╟─24d1b70b-9c26-4017-8369-40fe9a0b0085
-# ╠═d4b63e91-431d-4097-8a11-0e3eb404b91b
 # ╠═77f95570-c78c-11eb-2d0c-d12e6e2ad622
 # ╟─e642d15f-7539-46a8-a302-3b04ccbfc6ef
 # ╠═bb853a92-2571-4943-9f92-aa73f778ea1c
